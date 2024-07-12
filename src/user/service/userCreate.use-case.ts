@@ -3,7 +3,6 @@ import { CreateUserDto } from './dto/CreateUserDto';
 import { UserEntity } from './entity/user.entity';
 import { UserRepository } from '../repository/user.repository';
 import { NotFoundError } from './errors/NotFoundError';
-import { isNumber } from '@nestjs/common/utils/shared.utils';
 
 @Injectable()
 export class UserCreateUseCase {
