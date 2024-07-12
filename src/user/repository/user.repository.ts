@@ -12,7 +12,6 @@ export class UserRepository {
   ) {}
 
   async createUser(createUserDto: CreateUserDto): Promise<RepoUserDto> {
-    console.log('createUserDto', createUserDto);
     const { raw: users } = await this.repository
       .createQueryBuilder()
       .insert()
@@ -24,7 +23,7 @@ export class UserRepository {
       .returning('*')
       .execute();
     const user = users[0];
-    console.log('raw user', user);
+
     return {
       id: user.id,
       name: user.name,
@@ -36,6 +35,9 @@ export class UserRepository {
     const user = await this.repository.findOneBy({
       id,
     });
+    if (!user) {
+      return null;
+    }
     return {
       id: user.id,
       name: user.name,
